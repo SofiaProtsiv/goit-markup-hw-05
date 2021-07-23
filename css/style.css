@@ -102,6 +102,12 @@ img {
     font-weight: 700;
     font-size: 26px;
     line-height: 1.2;
+
+    transition-property: color;
+
+    transition-timing-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+
 }
 
 .nav-logo:focus,
@@ -117,6 +123,8 @@ img {
     color: var(--primary-text-color);
     font-weight: 500;
     letter-spacing: 0.02em;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav-link:hover,
@@ -128,7 +136,9 @@ img {
     display: flex;
     justify-content: space-between;
 }
-
+.site-nav-item{
+    position: relative;
+}
 .auth-nav {
     display: flex;
     justify-content: space-between;
@@ -141,6 +151,8 @@ img {
     text-align: center;
     align-items: center;
     color: var(--title-text-color);
+
+    transition: color, fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav-item:not(:last-child),
@@ -155,10 +167,27 @@ img {
     fill: var(--accent-color);
 }
 
+.site-nav-link::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+
+    opacity: 0;
+    transition:opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 .site-nav-link.current {
     color: var(--accent-color);
     border-bottom: 4px solid var(--accent-color);
     border-radius: 2px;
+}
+.site-nav-link:hover::after{
+    opacity: 1;
 }
 
 .auth-nav-item {
@@ -166,7 +195,10 @@ img {
     text-align: center;
     align-items: center;
     background-repeat: no-repeat;
-    fill: var(--title-text-color);
+    color: var(--title-text-color);
+
+    transition-property: color;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .auth-nav-icon {
@@ -212,26 +244,29 @@ img {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.2);
-    ;
+    opacity: 1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
     opacity: 0;
     pointer-events: none;
 }
-
+.backdrop.is-hidden .modal{
+transform: translate(-50%, -50%) scale(0.9);
+}
 .modal {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
     min-width: 528px;
     min-height: 581px;
     background: var(--address);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .modal-icon {
     position: absolute;
     top: 0;
@@ -393,7 +428,11 @@ img {
     height: 44px;
     border: none;
     border-radius: 50%;
+    background-color: var(--address);
     fill: var(--fill);
+
+    transition-property: background-color;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-media-link:hover,
@@ -442,6 +481,9 @@ img {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     color: var(--address);
     background-color: var(--accent-color);
+
+    transition-property: background-color;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button.primary:hover,
@@ -453,6 +495,9 @@ img {
 
 .button.secondary {
     background-color: var(--button-two);
+
+    transition-property: background-color;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button.secondary:hover,
@@ -470,6 +515,9 @@ img {
     display: flex;
     justify-content: space-between;
     margin-top: 50px;
+
+    transition-property: color;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-item:hover .clients-icon,
@@ -484,6 +532,9 @@ img {
     box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid var(--fill);
+
+    transition-property: color;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-link:hover,
@@ -566,6 +617,9 @@ img {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     fill: var(--address);
+
+    transition-property: background;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .network-link:not(:last-child) {
@@ -621,6 +675,8 @@ img {
 
 .cardset-link {
     display: block;
+
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cardset-link:hover,
@@ -629,27 +685,33 @@ img {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.cardset-info {
+.cardset-overlay {
     position: relative;
     width: 100%;
     display: block;
+    overflow: hidden;
 }
 
-.cardset-info::before {
+.cardset-overlay::before {
     content: "";
     position: absolute;
     display: inline-block;
     width: 100%;
     height: 100%;
     background: rgba(33, 150, 243, 0);
+    transform: translateY(100%);
+
+    transition-property: background;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cardset-info:hover::before,
-.cardset-info:active::before {
+.cardset-item:hover .cardset-overlay::before,
+.cardset-item:active .cardset-overlay::before{
+    transform: translateY(0);
     background: rgba(33, 150, 243, 0.9);
 }
 
-.cardset-info p {
+.cardset-overlay p {
     position: absolute;
     top: 0;
     padding: 63px 24px;
@@ -658,32 +720,29 @@ img {
     line-height: 1.5;
     color: var(--address);
     opacity: 0;
+
+    transition-property: opacity;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cardset-info p:hover,
-.cardset-info p:active {
+.cardset-item:hover .cardset-info p,
+.cardset-item:active .cardset-info p {
     opacity: 1;
 }
-
-
-/* .cardset-info p{
-  position: absolute;
-  top: 0;
-  padding: 63px 24px;
-  background: rgba(33, 150, 243, 0);
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.5;
-  color: var(--address);
-  opacity: 0;
-  }
-  .cardset-info p:hover::before,
-  .cardset-info p:active::before{
-  opacity: 1;
-  background: rgba(33, 150, 243, 0.9);
+.cardset-info{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateY(100%);
+    
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-  */
-
+.cardset-item:hover .cardset-info,
+.cardset-item:active .cardset-info{
+    transform: translateY(0);
+}
 .cardset-description {
     padding: 20px 24px;
     border-left: 1px solid var(--border);
