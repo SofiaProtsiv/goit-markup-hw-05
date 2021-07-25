@@ -6,6 +6,7 @@
     --address: #ffffff;
     --button-two: #f5f4fa;
     --fill: #AFB1B8;
+    --transition: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -92,8 +93,7 @@ img {
     line-height: 1.2;
     color: var(--primary-text-color);
 
-    transition-property: color;
-    transition-timing-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--transition);
 }
 
 .nav-logo:focus,
@@ -112,7 +112,7 @@ img {
     align-items: center;
     color: var(--primary-text-color);
 
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--transition);
 }
 
 .site-nav-link:hover,
@@ -141,7 +141,7 @@ img {
     border-radius: 2px;
 
     opacity: 0;
-    transition:opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition:opacity 250ms var(--transition);
 }
 .site-nav-link.current {
     color: var(--accent-color);
@@ -166,8 +166,7 @@ img {
     color: var(--title-text-color);
     fill: var(--title-text-color);
 
-    transition-property: color, fill;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--transition), fill 250ms var(--transition);
 }
 .auth-nav-item:hover,
 .auth-nav-item:focus {
@@ -186,7 +185,7 @@ img {
     align-items: center;
     color: var(--title-text-color);
 
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--transition);
 }
 .auth-nav-link:hover,
 .auth-nav-link:focus{
@@ -238,7 +237,7 @@ img {
     background: rgba(0, 0, 0, 0.2);
 
     opacity: 1;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 250ms var(--transition);
 }
 
 .backdrop.is-hidden {
@@ -263,18 +262,26 @@ img {
     transform: translate(-50%, -50%) scale(1);
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.modal-icon {
+.modal-button{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 8px;
+    right: 8px;
 
     width: 30px;
     height: 30px;
-    margin: 8px 8px 0 0;
     padding: 15px;
 
+    background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
+}
+
+.modal-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 0;
 }
 
 
@@ -429,13 +436,11 @@ img {
     width: 44px;
     height: 44px;
 
-    border: none;
     border-radius: 50%;
     background-color: var(--address);
     fill: var(--fill);
 
-    transition-property: background-color;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms var(--transition);
 }
 
 .social-media-link:hover,
@@ -491,8 +496,7 @@ img {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     background-color: var(--accent-color);
 
-    transition-property: background-color;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms var(--transition);
 }
 
 .button.primary:hover,
@@ -505,8 +509,7 @@ img {
 .button.secondary {
     background-color: var(--button-two);
 
-    transition-property: background-color;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms var(--transition);
 }
 
 .button.secondary:hover,
@@ -526,12 +529,12 @@ img {
     justify-content: space-between;
     margin-top: 50px;
 
-    transition-property: color;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--transition);
 }
 
 .clients-item:hover .clients-icon,
 .clients-item:focus .clients-icon {
+    color: var(--accent-color);
     fill: var(--accent-color);
 }
 
@@ -544,13 +547,13 @@ img {
     border-radius: 4px;
     border: 1px solid var(--fill);
 
-    transition-property: color;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--transition);
 }
 
 .clients-link:hover,
 .clients-link:focus {
     border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     fill: var(--accent-color);
 }
 
@@ -632,8 +635,7 @@ img {
     background: rgba(255, 255, 255, 0.1);
     fill: var(--address);
 
-    transition-property: background;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 250ms var(--transition);
 }
 
 .network-link:not(:last-child) {
@@ -693,9 +695,8 @@ img {
 .cardset-link {
     display: block;
 
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 250ms var(--transition);
 }
-
 .cardset-link:hover,
 .cardset-link:active {
     background: var(--address);
@@ -722,8 +723,7 @@ img {
     background: rgba(33, 150, 243, 0);
 
     transform: translateY(100%);
-    transition-property: background;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 250ms var(--transition);
 }
 
 .cardset-item:hover .cardset-overlay::before,
@@ -744,8 +744,7 @@ img {
     color: var(--address);
 
     opacity: 0;
-    transition-property: opacity;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 250ms var(--transition);
 }
 
 .cardset-item:hover .cardset-info p,
@@ -761,7 +760,7 @@ img {
     left: 0;
 
     transform: translateY(100%);
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: 250ms var(--transition);
 }
 .cardset-item:hover .cardset-info,
 .cardset-item:active .cardset-info{
@@ -779,10 +778,12 @@ img {
     font-size: 18px;
     line-height: 2;
     letter-spacing: 0.06em;
+    color: var(--primary-text-color);
 }
 
 .cardset-text {
     font-weight: 400;
     font-size: 16px;
     line-height: 1.8;
+    color: var(--title-text-color);
 }
